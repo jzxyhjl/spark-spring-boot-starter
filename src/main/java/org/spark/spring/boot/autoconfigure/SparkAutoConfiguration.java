@@ -38,27 +38,27 @@ public class SparkAutoConfiguration {
 	@Bean
 	@ConditionalOnMissingBean
 	@ConditionalOnBean(SparkConf.class)
-	public JavaSparkContext sparkContext() {
-		return new JavaSparkContext(sparkConf());
+	public JavaSparkContext javaSparkContext() {
+		return JavaSparkContext.fromSparkContext(sparkSession().sparkContext());
 	}
-	
+
 	@Bean
 	@ConditionalOnMissingBean
 	@ConditionalOnClass(JavaStreamingContext.class)
 	@ConditionalOnBean(JavaSparkContext.class)
 	@ConditionalOnProperty(name="spark.streaming.duration")
-	public JavaStreamingContext streamingContext(){
-		return new JavaStreamingContext(sparkContext(), new Duration(sparkProperties.getStreaming().getDuration()));
+	public JavaStreamingContext javaStreamingContext(){
+		return new JavaStreamingContext(javaSparkContext(), new Duration(sparkProperties.getStreaming().getDuration()));
 	}
-	
-	
+
+
 	@Bean
 	@ConditionalOnMissingBean
 	@ConditionalOnClass(SparkSession.class)
 	@ConditionalOnProperty(name="spark.appname")
-	public SparkSession sqlSession(){
+	public SparkSession sparkSession(){
 		Optional.ofNullable(sparkProperties.getAppname()).orElseThrow(() -> new IllegalArgumentException("Spark Session Bean not created. App Name not defined."));
 		return SparkSession.builder().appName(sparkProperties.getAppname()).config(sparkConf()).getOrCreate();
 	}
-	
+
 }
