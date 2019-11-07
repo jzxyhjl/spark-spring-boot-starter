@@ -2,6 +2,7 @@ package org.spark.spring.boot.autoconfigure;
 
 import java.util.Optional;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.SparkSession;
@@ -31,8 +32,8 @@ public class SparkAutoConfiguration {
 		Optional.ofNullable(sparkProperties.getAppname()).orElseThrow(() -> new IllegalArgumentException("Spark Conf Bean not created. App Name not defined."));
 		final SparkConf conf = new SparkConf();
 		sparkProperties.getProps().forEach((prop, value) -> conf.set("spark." + (String)prop, (String)value)); 
-		return conf.setAppName(sparkProperties.getAppname()).setMaster(Optional.ofNullable(sparkProperties.getMaster()).orElse("local"))
-				.setJars(Optional.ofNullable(sparkProperties.getJars()).orElse(new String[]{}));
+		return conf.setAppName(sparkProperties.getAppname()).setMaster(Optional.ofNullable(sparkProperties.getMaster()).orElse("local[*]"))
+				.setJars(ArrayUtils.addAll(JavaSparkContext.jarOfClass(this.getClass()), Optional.ofNullable(sparkProperties.getJars()).orElse(new String[]{})));
 	}
 
 	@Bean
@@ -60,5 +61,6 @@ public class SparkAutoConfiguration {
 		Optional.ofNullable(sparkProperties.getAppname()).orElseThrow(() -> new IllegalArgumentException("Spark Session Bean not created. App Name not defined."));
 		return SparkSession.builder().appName(sparkProperties.getAppname()).config(sparkConf()).getOrCreate();
 	}
+
 
 }
