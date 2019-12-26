@@ -45,4 +45,4 @@ private SparkSession sparkSession;
     spark.jars[2]=/usr/software/spark-jar/jars/hbase-server-1.2.0.jar
     spark.jars[3]=/usr/software/spark-jar/jars/hbase-protocol-1.2.0.jar
   ```
-  
+  * 配置模板参考resource/template/application.properties.template
