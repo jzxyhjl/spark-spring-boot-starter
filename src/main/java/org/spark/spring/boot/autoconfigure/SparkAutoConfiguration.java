@@ -29,9 +29,10 @@ public class SparkAutoConfiguration {
 	@Bean
 	@ConditionalOnMissingBean
 	public SparkConf sparkConf() {
+		System.setProperty("spark.serializer", "org.apache.spark.serializer.KryoSerializer");
 		Optional.ofNullable(sparkProperties.getAppname()).orElseThrow(() -> new IllegalArgumentException("Spark Conf Bean not created. App Name not defined."));
 		final SparkConf conf = new SparkConf();
-		sparkProperties.getProps().forEach((prop, value) -> conf.set("spark." + (String)prop, (String)value)); 
+		sparkProperties.getProps().forEach((prop, value) -> conf.set("spark." + prop, (String)value));
 		return conf.setAppName(sparkProperties.getAppname()).setMaster(Optional.ofNullable(sparkProperties.getMaster()).orElse("local[*]"))
 				.setJars(ArrayUtils.addAll(JavaSparkContext.jarOfClass(this.getClass()), Optional.ofNullable(sparkProperties.getJars()).orElse(new String[]{})));
 	}
