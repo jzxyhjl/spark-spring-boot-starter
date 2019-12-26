@@ -1,0 +1,28 @@
+# 这是引用spark-spring-boot-starter时可能用到的配置，如下为模板示例
+spark.appname=appname #[必填，spark需要有appname]
+#spark.master=spark://192.168.139.101:7077 #[使用集群必填，否则默认使用本地]
+spark.props.executor.cores=3 #[指定单个处理器执行时cpu使用几个核]
+spark.props.executor.memory=8g #[指定单个处理器执行时使用的内存]
+spark.props.cores.max=12 #[设置最多使用几个核]
+spark.props.local.dir=/home/tmp/spark #[指定运算时临时文件的输出地址，如果填写的地址没有权限，会导致无法计算]
+spark.props.network.timeout=10000000 #[超时时间]
+spark.props.executor.heartbeatInterval=10000000 #[心跳检测时间]
+spark.props.memory.fraction=0.75 #[优化处理时使用的内存占比]
+spark.props.storage.memoryFraction=0.45 #[优化处理时使用的内存占比]
+spark.props.sql.crossJoin.enabled=true #[开启对笛卡尔积的支持，spark2.x版本默认是false的]
+spark.props.debug.maxToStringFields=100 #[对大字符串进行截断，多次读取，比如某个字段的值是一串json]
+#spark.props.hadoop.fs.s3a.access.key=AKIATY3RZLGKIQZGC5XF #[连接亚马逊S3存储桶]
+#spark.props.hadoop.fs.s3a.secret.key=B19hwD1onKOh3XYnt0PFGYoFNjT8F71W7t3Ty/cX #[连接亚马逊S3存储桶]
+#spark.props.hadoop.fs.s3a.endpoint=s3.cn-north-1.amazonaws.com.cn #[连接亚马逊S3存储桶]
+#spark.props.hadoop.fs.s3a.fast.upload=true #[连接亚马逊S3存储桶]
+#运行时引用额外jar包
+#spark.jars[0]=/usr/software/spark-jar/jars/mysql-connector-java-5.1.39.jar
+#spark.jars[1]=/usr/software/spark-jar/jars/hbase-client-1.2.0.jar
+#spark.jars[2]=/usr/software/spark-jar/jars/hbase-common-1.2.0.jar
+#spark.jars[3]=/usr/software/spark-jar/jars/hbase-server-1.2.0.jar
+#spark.jars[4]=/usr/software/spark-jar/jars/hbase-protocol-1.2.0.jar
+#spark.jars[5]=/usr/software/spark-jar/jars/htrace-core4-4.0.1-incubating.jar
+#spark.jars[6]=/usr/software/spark-jar/jars/metrics-core-2.2.0.jar
+#spark.jars[7]=/usr/software/spark-jar/jars/guava-12.0.1.jar
+#spark.jars[8]=/usr/software/spark-jar/jars/htrace-core-3.2.0-incubating.jar
+#spark.jars[9]=/usr/software/spark-jar/jars/rt.jar
