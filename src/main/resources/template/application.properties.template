@@ -11,11 +11,8 @@ spark.props.memory.fraction=0.75 #[优化处理时使用的内存占比]
 spark.props.storage.memoryFraction=0.45 #[优化处理时使用的内存占比]
 spark.props.sql.crossJoin.enabled=true #[开启对笛卡尔积的支持，spark2.x版本默认是false的]
 spark.props.debug.maxToStringFields=100 #[对大字符串进行截断，多次读取，比如某个字段的值是一串json]
-#spark.props.hadoop.fs.s3a.access.key=AKIATY3RZLGKIQZGC5XF #[连接亚马逊S3存储桶]
-#spark.props.hadoop.fs.s3a.secret.key=B19hwD1onKOh3XYnt0PFGYoFNjT8F71W7t3Ty/cX #[连接亚马逊S3存储桶]
-#spark.props.hadoop.fs.s3a.endpoint=s3.cn-north-1.amazonaws.com.cn #[连接亚马逊S3存储桶]
-#spark.props.hadoop.fs.s3a.fast.upload=true #[连接亚马逊S3存储桶]
-#运行时引用额外jar包
+
+# 运行时引用额外jar包
 #spark.jars[0]=/usr/software/spark-jar/jars/mysql-connector-java-5.1.39.jar
 #spark.jars[1]=/usr/software/spark-jar/jars/hbase-client-1.2.0.jar
 #spark.jars[2]=/usr/software/spark-jar/jars/hbase-common-1.2.0.jar
@@ -26,3 +23,9 @@ spark.props.debug.maxToStringFields=100 #[对大字符串进行截断，多次�
 #spark.jars[7]=/usr/software/spark-jar/jars/guava-12.0.1.jar
 #spark.jars[8]=/usr/software/spark-jar/jars/htrace-core-3.2.0-incubating.jar
 #spark.jars[9]=/usr/software/spark-jar/jars/rt.jar
+
+# spark-s3a
+#spark.props.hadoop.fs.s3a.access.key=AKIATY3RZLGKIQZGC5XF #[连接亚马逊S3存储桶]
+#spark.props.hadoop.fs.s3a.secret.key=B19hwD1onKOh3XYnt0PFGYoFNjT8F71W7t3Ty/cX #[连接亚马逊S3存储桶]
+#spark.props.hadoop.fs.s3a.endpoint=s3.cn-north-1.amazonaws.com.cn #[连接亚马逊S3存储桶]
+#spark.props.hadoop.fs.s3a.fast.upload=true #[连接亚马逊S3存储桶]
